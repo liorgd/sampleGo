@@ -2,11 +2,14 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+	_ "github.com/lib/pq"
+	"main/db"
 	"net/http"
 )
 
+
 // represents data about a record.
-type record struct {
+type Record struct {
 	ID     string  `json:"id"`
 	Title  string  `json:"title"`
 	Content string  `json:"content"`
@@ -14,7 +17,7 @@ type record struct {
 	Timestamp int32 `json:"timestamp"`
 }
 
-var records = []record{
+var records = []Record{
 	{ID: "1", Title: "Blue Train", Content: "John Coltrane", Views: 56, Timestamp: 3452341},
 	{ID: "2", Title: "Jeru", Content: "John Coltrane", Views: 57, Timestamp: 3452342},
 	{ID: "3", Title: "Sarah Vaughan and Clifford Brown", Content: "John Coltrane", Views: 58, Timestamp: 3452343},
@@ -24,12 +27,9 @@ func getRecords(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, records)
 }
 
-// postAlbums adds an album from JSON received in the request body.
-func postAlbums(c *gin.Context) {
-	var newRecord record
+func postRecord(c *gin.Context) {
+	var newRecord Record
 
-	// Call BindJSON to bind the received JSON to
-	// newAlbum.
 	if err := c.BindJSON(&newRecord); err != nil {
 		return
 	}
@@ -39,7 +39,7 @@ func postAlbums(c *gin.Context) {
 	c.IndentedJSON(http.StatusCreated, newRecord)
 }
 
-// getAlbumByID locates the record whose ID value matches the id
+// getRecordByID locates the record whose ID value matches the id
 // parameter sent by the client, then returns that record as a response.
 func getRecordByID(c *gin.Context) {
 	id := c.Param("id")
@@ -52,14 +52,18 @@ func getRecordByID(c *gin.Context) {
 			return
 		}
 	}
-	c.IndentedJSON(http.StatusNotFound, gin.H{"message": "album not found"})
+	c.IndentedJSON(http.StatusNotFound, gin.H{"message": "record not found"})
 }
 
 func main() {
 	router := gin.Default()
 	router.GET("/records", getRecords)
 	router.GET("/records/:id", getRecordByID)
-	router.POST("/records", postAlbums)
+	router.POST("/records", postRecord)
 
+	//db.SetupDB()
+	db.GetRecords()
 	router.Run("localhost:3000")
 }
+
+
