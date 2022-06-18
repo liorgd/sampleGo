@@ -1,33 +1,34 @@
 package rest
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
+	"main/Structures"
 	"main/db"
 	"net/http"
 )
 
-// represents data about a record.
-type Record struct {
-	ID     string  `json:"id"`
-	Title  string  `json:"title"`
-	Content string  `json:"content"`
-	Views  int32 `json:"views"`
-	Timestamp int32 `json:"timestamp"`
-}
-
-var records = []Record{
+var records = []Structures.Record{
 	{ID: "1", Title: "Blue Train", Content: "John Coltrane", Views: 56, Timestamp: 3452341},
 	{ID: "2", Title: "Jeru", Content: "John Coltrane", Views: 57, Timestamp: 3452342},
 	{ID: "3", Title: "Sarah Vaughan and Clifford Brown", Content: "John Coltrane", Views: 58, Timestamp: 3452343},
 }
 
+var UseCache bool
+
 func GetRecords(c *gin.Context) {
-	db.GetRecords();
-	c.IndentedJSON(http.StatusOK, records)
+	fmt.Println("UseCache:",UseCache)
+	if UseCache == true {
+		c.IndentedJSON(http.StatusOK, records)
+	} else {
+		var recordsFromDb = db.GetRecords()
+		c.IndentedJSON(http.StatusOK, recordsFromDb)
+	}
+
 }
 
 func PostRecord(c *gin.Context) {
-	var newRecord Record
+	var newRecord Structures.Record
 
 	if err := c.BindJSON(&newRecord); err != nil {
 		return

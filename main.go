@@ -7,8 +7,8 @@ import (
 )
 
 
-
 func main() {
+	rest.UseCache = false
 	router := gin.Default()
 	router.GET("/records", rest.GetRecords)
 	router.GET("/records/:id", rest.GetRecordByID)

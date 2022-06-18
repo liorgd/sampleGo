@@ -3,6 +3,8 @@ package db
 import (
 	"database/sql"
 	"fmt"
+	"main/Structures"
+	"strconv"
 )
 
 const (
@@ -20,31 +22,39 @@ func SetupDB() *sql.DB {
 }
 
 // Function for handling messages
-func printMessage(message string) {
+func PrintMessage(message string) {
 	fmt.Println(message)
 }
 
-func GetRecords() {
-	db := SetupDB()
+func GetRecords() []Structures.Record {
 
-	printMessage("Getting records...")
+	PrintMessage("Getting records...")
+	db := SetupDB()
 
 	// Get all movies from movies table that don't have movieID = "1"
 	rows, err := db.Query("SELECT * FROM records")
 	checkErr(err)
 
-	printMessage("Parsing records...")
+	PrintMessage("Parsing records...")
+	var records = []Structures.Record{}
+	var record = Structures.Record{}
 	for rows.Next() {
-		var s1 string
-		var s2 string
-		var s3 string
-		var i4 string
-		var i5 string
+		var ID string
+		var Title string
+		var Content string
+		var Views int
+		var Timestamp int
 
-		err = rows.Scan(&s1, &s2, &s3, &i4, &i5)
+		err = rows.Scan(&ID, &Title, &Content, &Views, &Timestamp)
 
-		printMessage("values: " + s1 + " " + s2 + " " + s3 + " " + i4 + " " + i5)
+		PrintMessage("values: " + ID + " " + Title + " " + Content + " " + strconv.Itoa(Views) + " " + strconv.Itoa(Timestamp))
+		record.ID = ID
+		record.Title = Title
+		record.Content = Content
+		record.Views = Views
+		record.Timestamp = Timestamp
 
+		records = append(records, record)
 		// check errors
 		checkErr(err)
 
@@ -52,13 +62,13 @@ func GetRecords() {
 
 	// check errors
 	checkErr(err)
-
+	return records
 }
 
 // Function for handling errors
 func checkErr(err error) {
 	if err != nil {
-		printMessage("print error")
+		PrintMessage("print error")
 		panic(err)
 	}
 }
