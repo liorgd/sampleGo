@@ -24,6 +24,7 @@ var records = []Record{
 }
 
 func getRecords(c *gin.Context) {
+	//db.GetRecords();
 	c.IndentedJSON(http.StatusOK, records)
 }
 

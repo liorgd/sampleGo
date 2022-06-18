@@ -21,9 +21,7 @@ func SetupDB() *sql.DB {
 
 // Function for handling messages
 func printMessage(message string) {
-	fmt.Println("")
 	fmt.Println(message)
-	fmt.Println("")
 }
 
 func GetRecords() {
