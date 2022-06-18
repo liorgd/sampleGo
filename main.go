@@ -9,14 +9,15 @@ import (
 type album struct {
 	ID     string  `json:"id"`
 	Title  string  `json:"title"`
-	Artist string  `json:"artist"`
-	Price  float64 `json:"price"`
+	Content string  `json:"content"`
+	Views  int32 `json:"views"`
+	Timestamp int32 `json:"timestamp"`
 }
 
 var albums = []album{
-	{ID: "1", Title: "Blue Train", Artist: "John Coltrane", Price: 56.99},
-	{ID: "2", Title: "Jeru", Artist: "Gerry Mulligan", Price: 17.99},
-	{ID: "3", Title: "Sarah Vaughan and Clifford Brown", Artist: "Sarah Vaughan", Price: 39.99},
+	{ID: "1", Title: "Blue Train", Content: "John Coltrane", Views: 56, Timestamp: 3452341},
+	{ID: "2", Title: "Jeru", Content: "John Coltrane", Views: 57, Timestamp: 3452342},
+	{ID: "3", Title: "Sarah Vaughan and Clifford Brown", Content: "John Coltrane", Views: 58, Timestamp: 3452343},
 }
 
 func getAlbums(c *gin.Context) {
