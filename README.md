@@ -1,5 +1,10 @@
 # sampleGo  
 
+##references:
+- https://go.dev/doc/database/querying
+- https://go.dev/doc/tutorial/web-service-gin
+- https://www.section.io/engineering-education/build-a-rest-api-application-using-golang-and-postgresql-database/
+
 ## container support
 web service listening on port 3000
 Has dockerfile support - Use port forward to communicate via container
