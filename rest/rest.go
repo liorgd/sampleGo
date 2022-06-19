@@ -59,3 +59,15 @@ func GetRecordByID(c *gin.Context) {
 		return
 	}
 }
+
+func DeleteRecord(c *gin.Context) {
+	id := c.Param("id")
+	if UseCache == true {
+		// not implemented
+	} else {
+		db.DeleteRecord(id)
+		c.IndentedJSON(http.StatusOK, "")
+		return
+	}
+
+}

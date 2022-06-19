@@ -13,6 +13,7 @@ func main() {
 	router.GET("/records", rest.GetRecords)
 	router.GET("/records/:id", rest.GetRecordByID)
 	router.POST("/records", rest.PostRecord)
+	router.DELETE("/records/:id", rest.DeleteRecord)
 
 	router.Run("localhost:3000")
 }
