@@ -30,3 +30,8 @@ curl http://localhost:3000/records \
 --header "Content-Type: application/json" \
 --request "GET"
 
+#DELETE record by id
+curl http://localhost:3000/records/1 \
+--include \
+--header "Content-Type: application/json" \
+--request "DELETE" 
