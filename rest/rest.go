@@ -45,11 +45,17 @@ func PostRecord(c *gin.Context) {
 func GetRecordByID(c *gin.Context) {
 	id := c.Param("id")
 
-	for _, a := range records {
-		if a.ID == id {
-			c.IndentedJSON(http.StatusOK, a)
-			return
+	if UseCache == true {
+		for _, gotrecord := range records {
+			if gotrecord.ID == id {
+				c.IndentedJSON(http.StatusOK, gotrecord)
+				return
+			}
 		}
+		c.IndentedJSON(http.StatusNotFound, gin.H{"message": "record not found"})
+	} else {
+		var recordReceived = db.GetRecord(id)
+		c.IndentedJSON(http.StatusOK, recordReceived)
+		return
 	}
-	c.IndentedJSON(http.StatusNotFound, gin.H{"message": "record not found"})
 }

@@ -82,3 +82,20 @@ func AddRecord(newRecord Structures.Record) {
 
 	fmt.Println("The record has been inserted successfully!")
 }
+
+func GetRecord(id string) Structures.Record {
+
+	db := SetupDB()
+
+	fmt.Println("getting record from DB")
+	var recordReceived Structures.Record
+	strQuery := "SELECT id, title, content, views, timestamp FROM records WHERE id = " + "'" + id + "'"
+	err := db.QueryRow(strQuery).Scan(&recordReceived.ID, &recordReceived.Title, &recordReceived.Content, &recordReceived.Views, &recordReceived.Timestamp)
+	//err := db.QueryRow("SELECT id, title, content, views, timestamp FROM records WHERE id = ?",id).Scan(&recordReceived.ID, &recordReceived.Title, &recordReceived.Content,&recordReceived.Views,&recordReceived.Timestamp)
+
+	checkErr(err)
+
+	fmt.Println("The record has been got successfully! recordReceived:", recordReceived)
+
+	return recordReceived
+}
