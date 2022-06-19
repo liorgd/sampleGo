@@ -21,21 +21,16 @@ func SetupDB() *sql.DB {
 	return db
 }
 
-// Function for handling messages
-func PrintMessage(message string) {
-	fmt.Println(message)
-}
-
 func GetRecords() []Structures.Record {
 
-	PrintMessage("Getting records...")
+	fmt.Println("Getting records...")
 	db := SetupDB()
 
 	// Get all movies from movies table that don't have movieID = "1"
 	rows, err := db.Query("SELECT * FROM records")
 	checkErr(err)
 
-	PrintMessage("Parsing records...")
+	fmt.Println("Parsing records...")
 	var records = []Structures.Record{}
 	var record = Structures.Record{}
 	for rows.Next() {
@@ -47,7 +42,7 @@ func GetRecords() []Structures.Record {
 
 		err = rows.Scan(&ID, &Title, &Content, &Views, &Timestamp)
 
-		PrintMessage("values: " + ID + " " + Title + " " + Content + " " + strconv.Itoa(Views) + " " + strconv.Itoa(Timestamp))
+		fmt.Println("values: " + ID + " " + Title + " " + Content + " " + strconv.Itoa(Views) + " " + strconv.Itoa(Timestamp))
 		record.ID = ID
 		record.Title = Title
 		record.Content = Content
@@ -68,7 +63,7 @@ func GetRecords() []Structures.Record {
 // Function for handling errors
 func checkErr(err error) {
 	if err != nil {
-		PrintMessage("print error")
+		fmt.Println("print error")
 		panic(err)
 	}
 }
