@@ -72,3 +72,18 @@ func checkErr(err error) {
 		panic(err)
 	}
 }
+
+func AddRecord(newRecord Structures.Record) {
+
+	db := SetupDB()
+
+	fmt.Println("Inserting record into DB")
+
+	var lastInsertID int
+	err := db.QueryRow("INSERT INTO records(id, title, content, views, timestamp) VALUES($1, $2, $3, $4, $5) returning id;", newRecord.ID, newRecord.Title, newRecord.Content, newRecord.Views, newRecord.Timestamp).Scan(&lastInsertID)
+
+	// check errors
+	checkErr(err)
+
+	fmt.Println("The record has been inserted successfully!")
+}

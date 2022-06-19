@@ -17,14 +17,13 @@ var records = []Structures.Record{
 var UseCache bool
 
 func GetRecords(c *gin.Context) {
-	fmt.Println("UseCache:",UseCache)
+	fmt.Println("UseCache:", UseCache)
 	if UseCache == true {
 		c.IndentedJSON(http.StatusOK, records)
 	} else {
 		var recordsFromDb = db.GetRecords()
 		c.IndentedJSON(http.StatusOK, recordsFromDb)
 	}
-
 }
 
 func PostRecord(c *gin.Context) {
@@ -34,16 +33,18 @@ func PostRecord(c *gin.Context) {
 		return
 	}
 
-	// Add the new record to the slice.
-	records = append(records, newRecord)
-	c.IndentedJSON(http.StatusCreated, newRecord)
+	if UseCache == true {
+		// Add the new record to the slice.
+		records = append(records, newRecord)
+		c.IndentedJSON(http.StatusCreated, newRecord)
+	} else {
+		db.AddRecord(newRecord)
+	}
 }
 
 func GetRecordByID(c *gin.Context) {
 	id := c.Param("id")
 
-	// Loop over the list of albums, looking for
-	// an album whose ID value matches the parameter.
 	for _, a := range records {
 		if a.ID == id {
 			c.IndentedJSON(http.StatusOK, a)
