@@ -1,11 +1,11 @@
-"# sampleGo"  
+# sampleGo  
 
+## container support
 web service listening on port 3000
-
 Has dockerfile support - Use port forward to communicate via container
 
-POST record:
-
+## commands
+# POST record:
 curl http://localhost:3000/records \
 --include \
 --header "Content-Type: application/json" \
@@ -14,7 +14,7 @@ curl http://localhost:3000/records \
 
 Be sure the id is unique
 
-GET all records: 
+#GET all records: 
 curl http://localhost:3000/records \
 --header "Content-Type: application/json" \
 --request "GET"
