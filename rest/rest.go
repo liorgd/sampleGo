@@ -71,3 +71,7 @@ func DeleteRecord(c *gin.Context) {
 	}
 
 }
+
+func GetStaticResponse(c *gin.Context) {
+	c.IndentedJSON(http.StatusOK, "sample Go")
+}

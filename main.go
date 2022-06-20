@@ -10,6 +10,7 @@ import (
 func main() {
 	rest.UseCache = false
 	router := gin.Default()
+	router.GET("/", rest.GetStaticResponse)
 	router.GET("/records", rest.GetRecords)
 	router.GET("/records/:id", rest.GetRecordByID)
 	router.POST("/records", rest.PostRecord)

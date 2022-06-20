@@ -4,6 +4,7 @@
 - https://go.dev/doc/database/querying
 - https://go.dev/doc/tutorial/web-service-gin
 - https://www.section.io/engineering-education/build-a-rest-api-application-using-golang-and-postgresql-database/
+- https://docs.rancherdesktop.io/tutorials/working-with-images/
 
 ## container support
 web service listening on port 3000
@@ -40,3 +41,7 @@ curl http://localhost:3000/records/1 \
 --include \
 --header "Content-Type: application/json" \
 --request "DELETE" 
+
+##Build from docker
+nerdctl --namespace go build -t sample-go:v1.0 .
+kubectl run --image sample-go:v1.0 sample-go
