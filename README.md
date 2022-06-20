@@ -44,7 +44,6 @@ curl http://localhost:3000/records/1 \
 
 ##Build from docker
 nerdctl --namespace k8s.io build -t sample-go:v1.0 .
-kubectl run --image sample-go:v1.0 sample-go
 
 ##run image in k8s cluser
 kubectl apply -f k8s/pod.yml

@@ -8,13 +8,15 @@ import (
 )
 
 const (
+	DB_HOST     = "127.0.0.1"
+	DB_PORT     = "5432"
 	DB_USER     = "app1"
 	DB_PASSWORD = "p"
 	DB_NAME     = "app_db"
 )
 
 func SetupDB() *sql.DB {
-	dbinfo := fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable", DB_USER, DB_PASSWORD, DB_NAME)
+	dbinfo := fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable host=%s port=%s", DB_USER, DB_PASSWORD, DB_NAME, DB_HOST, DB_PORT)
 	db, err := sql.Open("postgres", dbinfo)
 
 	checkErr(err)
