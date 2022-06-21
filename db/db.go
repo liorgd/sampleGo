@@ -8,11 +8,11 @@ import (
 )
 
 const (
-	DB_HOST     = "127.0.0.1"
+	DB_HOST     = "localhost"
 	DB_PORT     = "5432"
-	DB_USER     = "app1"
+	DB_USER     = "postgres"
 	DB_PASSWORD = "p"
-	DB_NAME     = "app_db"
+	DB_NAME     = "postgres"
 )
 
 func SetupDB() *sql.DB {
