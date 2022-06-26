@@ -33,6 +33,14 @@ func (r *mutationResolver) CreateRecord(ctx context.Context, input model.NewReco
 	return record, nil
 }
 
+func (r *mutationResolver) DeleteRecord(ctx context.Context, input model.DeleteRecord) (*model.DeletedRecord, error) {
+	db.DeleteRecord(input.ID)
+	deletedrecord := &model.DeletedRecord{
+	ID : input.ID,
+}
+	return deletedrecord, nil
+}
+
 func (r *queryResolver) Records(ctx context.Context) ([]*model.Record, error) {
 	return nil, nil
 }

@@ -22,6 +22,15 @@ input NewRecord {
     Timestamp : Int!
 }
 
+type DeletedRecord {
+    ID :   String!
+}
+
+input DeleteRecord {
+    ID :   String!
+}
+
 type Mutation {
     createRecord(input: NewRecord!): Record!
+    DeleteRecord(input: DeleteRecord!):DeletedRecord!
 }

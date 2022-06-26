@@ -53,3 +53,8 @@ kubectl apply -f k8s/sbc-lb.yml
 https://gqlgen.com/getting-started/
 postman related commands in postman folder
 
+mutation deleterecord {
+DeleteRecord(input: { ID: "4" }) {
+ID    
+}
+}

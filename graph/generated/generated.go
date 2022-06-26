@@ -44,8 +44,13 @@ type DirectiveRoot struct {
 }
 
 type ComplexityRoot struct {
+	DeletedRecord struct {
+		ID func(childComplexity int) int
+	}
+
 	Mutation struct {
 		CreateRecord func(childComplexity int, input model.NewRecord) int
+		DeleteRecord func(childComplexity int, input model.DeleteRecord) int
 	}
 
 	Query struct {
@@ -63,6 +68,7 @@ type ComplexityRoot struct {
 
 type MutationResolver interface {
 	CreateRecord(ctx context.Context, input model.NewRecord) (*model.Record, error)
+	DeleteRecord(ctx context.Context, input model.DeleteRecord) (*model.DeletedRecord, error)
 }
 type QueryResolver interface {
 	Records(ctx context.Context) ([]*model.Record, error)
@@ -83,6 +89,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 	_ = ec
 	switch typeName + "." + field {
 
+	case "DeletedRecord.ID":
+		if e.complexity.DeletedRecord.ID == nil {
+			break
+		}
+
+		return e.complexity.DeletedRecord.ID(childComplexity), true
+
 	case "Mutation.createRecord":
 		if e.complexity.Mutation.CreateRecord == nil {
 			break
@@ -94,6 +107,18 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Mutation.CreateRecord(childComplexity, args["input"].(model.NewRecord)), true
+
+	case "Mutation.DeleteRecord":
+		if e.complexity.Mutation.DeleteRecord == nil {
+			break
+		}
+
+		args, err := ec.field_Mutation_DeleteRecord_args(context.TODO(), rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.complexity.Mutation.DeleteRecord(childComplexity, args["input"].(model.DeleteRecord)), true
 
 	case "Query.Records":
 		if e.complexity.Query.Records == nil {
@@ -145,6 +170,7 @@ func (e *executableSchema) Exec(ctx context.Context) graphql.ResponseHandler {
 	rc := graphql.GetOperationContext(ctx)
 	ec := executionContext{rc, e}
 	inputUnmarshalMap := graphql.BuildUnmarshalerMap(
+		ec.unmarshalInputDeleteRecord,
 		ec.unmarshalInputNewRecord,
 	)
 	first := true
@@ -230,8 +256,17 @@ input NewRecord {
     Timestamp : Int!
 }
 
+type DeletedRecord {
+    ID :   String!
+}
+
+input DeleteRecord {
+    ID :   String!
+}
+
 type Mutation {
     createRecord(input: NewRecord!): Record!
+    DeleteRecord(input: DeleteRecord!):DeletedRecord!
 }
 `, BuiltIn: false},
 }
@@ -240,6 +275,21 @@ var parsedSchema = gqlparser.MustLoadSchema(sources...)
 // endregion ************************** generated!.gotpl **************************
 
 // region    ***************************** args.gotpl *****************************
+
+func (ec *executionContext) field_Mutation_DeleteRecord_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	var err error
+	args := map[string]interface{}{}
+	var arg0 model.DeleteRecord
+	if tmp, ok := rawArgs["input"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
+		arg0, err = ec.unmarshalNDeleteRecord2mainᚋgraphᚋmodelᚐDeleteRecord(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["input"] = arg0
+	return args, nil
+}
 
 func (ec *executionContext) field_Mutation_createRecord_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
@@ -309,6 +359,50 @@ func (ec *executionContext) field___Type_fields_args(ctx context.Context, rawArg
 
 // region    **************************** field.gotpl *****************************
 
+func (ec *executionContext) _DeletedRecord_ID(ctx context.Context, field graphql.CollectedField, obj *model.DeletedRecord) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DeletedRecord_ID(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.ID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(string)
+	fc.Result = res
+	return ec.marshalNString2string(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_DeletedRecord_ID(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "DeletedRecord",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _Mutation_createRecord(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_Mutation_createRecord(ctx, field)
 	if err != nil {
@@ -370,6 +464,65 @@ func (ec *executionContext) fieldContext_Mutation_createRecord(ctx context.Conte
 	}()
 	ctx = graphql.WithFieldContext(ctx, fc)
 	if fc.Args, err = ec.field_Mutation_createRecord_args(ctx, field.ArgumentMap(ec.Variables)); err != nil {
+		ec.Error(ctx, err)
+		return
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Mutation_DeleteRecord(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Mutation_DeleteRecord(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Mutation().DeleteRecord(rctx, fc.Args["input"].(model.DeleteRecord))
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(*model.DeletedRecord)
+	fc.Result = res
+	return ec.marshalNDeletedRecord2ᚖmainᚋgraphᚋmodelᚐDeletedRecord(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Mutation_DeleteRecord(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Mutation",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "ID":
+				return ec.fieldContext_DeletedRecord_ID(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type DeletedRecord", field.Name)
+		},
+	}
+	defer func() {
+		if r := recover(); r != nil {
+			err = ec.Recover(ctx, r)
+			ec.Error(ctx, err)
+		}
+	}()
+	ctx = graphql.WithFieldContext(ctx, fc)
+	if fc.Args, err = ec.field_Mutation_DeleteRecord_args(ctx, field.ArgumentMap(ec.Variables)); err != nil {
 		ec.Error(ctx, err)
 		return
 	}
@@ -2554,6 +2707,29 @@ func (ec *executionContext) fieldContext___Type_specifiedByURL(ctx context.Conte
 
 // region    **************************** input.gotpl *****************************
 
+func (ec *executionContext) unmarshalInputDeleteRecord(ctx context.Context, obj interface{}) (model.DeleteRecord, error) {
+	var it model.DeleteRecord
+	asMap := map[string]interface{}{}
+	for k, v := range obj.(map[string]interface{}) {
+		asMap[k] = v
+	}
+
+	for k, v := range asMap {
+		switch k {
+		case "ID":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("ID"))
+			it.ID, err = ec.unmarshalNString2string(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		}
+	}
+
+	return it, nil
+}
+
 func (ec *executionContext) unmarshalInputNewRecord(ctx context.Context, obj interface{}) (model.NewRecord, error) {
 	var it model.NewRecord
 	asMap := map[string]interface{}{}
@@ -2617,6 +2793,34 @@ func (ec *executionContext) unmarshalInputNewRecord(ctx context.Context, obj int
 
 // region    **************************** object.gotpl ****************************
 
+var deletedRecordImplementors = []string{"DeletedRecord"}
+
+func (ec *executionContext) _DeletedRecord(ctx context.Context, sel ast.SelectionSet, obj *model.DeletedRecord) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, deletedRecordImplementors)
+	out := graphql.NewFieldSet(fields)
+	var invalids uint32
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("DeletedRecord")
+		case "ID":
+
+			out.Values[i] = ec._DeletedRecord_ID(ctx, field, obj)
+
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch()
+	if invalids > 0 {
+		return graphql.Null
+	}
+	return out
+}
+
 var mutationImplementors = []string{"Mutation"}
 
 func (ec *executionContext) _Mutation(ctx context.Context, sel ast.SelectionSet) graphql.Marshaler {
@@ -2640,6 +2844,15 @@ func (ec *executionContext) _Mutation(ctx context.Context, sel ast.SelectionSet)
 
 			out.Values[i] = ec.OperationContext.RootResolverMiddleware(innerCtx, func(ctx context.Context) (res graphql.Marshaler) {
 				return ec._Mutation_createRecord(ctx, field)
+			})
+
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
+		case "DeleteRecord":
+
+			out.Values[i] = ec.OperationContext.RootResolverMiddleware(innerCtx, func(ctx context.Context) (res graphql.Marshaler) {
+				return ec._Mutation_DeleteRecord(ctx, field)
 			})
 
 			if out.Values[i] == graphql.Null {
@@ -3108,6 +3321,25 @@ func (ec *executionContext) marshalNBoolean2bool(ctx context.Context, sel ast.Se
 		}
 	}
 	return res
+}
+
+func (ec *executionContext) unmarshalNDeleteRecord2mainᚋgraphᚋmodelᚐDeleteRecord(ctx context.Context, v interface{}) (model.DeleteRecord, error) {
+	res, err := ec.unmarshalInputDeleteRecord(ctx, v)
+	return res, graphql.ErrorOnPath(ctx, err)
+}
+
+func (ec *executionContext) marshalNDeletedRecord2mainᚋgraphᚋmodelᚐDeletedRecord(ctx context.Context, sel ast.SelectionSet, v model.DeletedRecord) graphql.Marshaler {
+	return ec._DeletedRecord(ctx, sel, &v)
+}
+
+func (ec *executionContext) marshalNDeletedRecord2ᚖmainᚋgraphᚋmodelᚐDeletedRecord(ctx context.Context, sel ast.SelectionSet, v *model.DeletedRecord) graphql.Marshaler {
+	if v == nil {
+		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
+			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
+		}
+		return graphql.Null
+	}
+	return ec._DeletedRecord(ctx, sel, v)
 }
 
 func (ec *executionContext) unmarshalNInt2int(ctx context.Context, v interface{}) (int, error) {
