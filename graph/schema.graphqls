@@ -1,0 +1,27 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+type Record {
+    ID :   String!
+    title : String!
+    Content :String!
+    Views  : Int!
+    Timestamp : Int!
+}
+
+type Query {
+    Records: [Record!]!
+}
+
+input NewRecord {
+    ID :   String!
+    title : String!
+    Content :String!
+    Views  : Int!
+    Timestamp : Int!
+}
+
+type Mutation {
+    createRecord(input: NewRecord!): Record!
+}

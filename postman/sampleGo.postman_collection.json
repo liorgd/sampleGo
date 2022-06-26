@@ -1,0 +1,124 @@
+{
+	"info": {
+		"_postman_id": "84787795-c4f1-4f98-b9f3-f7a654c26d7f",
+		"name": "sampleGo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6969365"
+	},
+	"item": [
+		{
+			"name": "createRecord",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": " application/json, multipart/mixed",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": " gzip, deflate, br",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Language",
+						"value": " en-US,en;q=0.9,he-IL;q=0.8,he;q=0.7",
+						"type": "text"
+					},
+					{
+						"key": "Connection",
+						"value": " keep-alive",
+						"type": "text"
+					},
+					{
+						"key": "Content-Length",
+						"value": " 253",
+						"type": "text"
+					},
+					{
+						"key": "content-type",
+						"value": " application/json",
+						"type": "text"
+					},
+					{
+						"key": "DNT",
+						"value": " 1",
+						"type": "text"
+					},
+					{
+						"key": "Host",
+						"value": " localhost:3000",
+						"type": "text"
+					},
+					{
+						"key": "Origin",
+						"value": " http://localhost:3000",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": " http://localhost:3000/",
+						"type": "text"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": " \".Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"103\", \"Chromium\";v=\"103\"",
+						"type": "text"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": " ?0",
+						"type": "text"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": " \"Windows\"",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": " empty",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": " cors",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": " same-origin",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": " Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36",
+						"type": "text"
+					},
+					{
+						"key": "x-pf-location",
+						"value": " External",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"query\":\"mutation createRecord {\\n  createRecord(input: {ID: \\\"4\\\", title: \\\"title\\\", Content:\\\"Content\\\", Timestamp:1, Views:1}) {\\n   \\tID,\\n\\t\\ttitle,\\n\\t\\tContent,\\n\\t\\tTimestamp,\\n\\t\\tViews\\n  }\\n}\",\"variables\":null,\"operationName\":\"createRecord\"}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -3,12 +3,13 @@ package db
 import (
 	"database/sql"
 	"fmt"
+	_ "github.com/lib/pq"
 	"main/Structures"
 	"strconv"
 )
 
 const (
-	DB_HOST     = "10.43.85.202"
+	DB_HOST     = "localhost"
 	DB_PORT     = "5432"
 	DB_USER     = "postgres"
 	DB_PASSWORD = "p"

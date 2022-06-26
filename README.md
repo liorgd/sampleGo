@@ -49,3 +49,7 @@ nerdctl --namespace k8s.io build -t sample-go:v1.0 .
 kubectl apply -f k8s/pod.yml
 kubectl apply -f k8s/sbc-lb.yml
 
+##GraphQL 
+https://gqlgen.com/getting-started/
+postman related commands in postman folder
+
