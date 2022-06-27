@@ -53,8 +53,17 @@ kubectl apply -f k8s/sbc-lb.yml
 https://gqlgen.com/getting-started/
 postman related commands in postman folder
 
+To generate code from schema:
+go generate ./...
+
 mutation deleterecord {
 DeleteRecord(input: { ID: "4" }) {
+ID    
+}
+}
+
+query record {
+Record(input: { ID: "3" }) {
 ID    
 }
 }

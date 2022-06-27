@@ -10,6 +10,10 @@ type DeletedRecord struct {
 	ID string `json:"ID"`
 }
 
+type GetRecord struct {
+	ID string `json:"ID"`
+}
+
 type NewRecord struct {
 	ID        string `json:"ID"`
 	Title     string `json:"title"`

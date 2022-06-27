@@ -60,6 +60,20 @@ func (r *queryResolver) Records(ctx context.Context) ([]*model.Record, error) {
 	return tarRecords, nil
 }
 
+func (r *queryResolver) Record(ctx context.Context, input model.GetRecord) (*model.Record, error) {
+	origRecord := db.GetRecord(input.ID)
+	var foundRecord model.Record
+	foundRecord = model.Record{
+		ID:        origRecord.ID,
+		Title:     origRecord.Title,
+		Content:   origRecord.Content,
+		Views:     origRecord.Views,
+		Timestamp: origRecord.Timestamp,
+	}
+
+	return &foundRecord, nil
+}
+
 // Mutation returns generated.MutationResolver implementation.
 func (r *Resolver) Mutation() generated.MutationResolver { return &mutationResolver{r} }
 

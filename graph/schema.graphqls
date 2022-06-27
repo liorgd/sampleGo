@@ -12,6 +12,11 @@ type Record {
 
 type Query {
     Records: [Record!]!
+    Record(input: GetRecord!): Record!
+}
+
+input GetRecord {
+    ID :   String!
 }
 
 input NewRecord {

@@ -119,6 +119,614 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "deleteRecord",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": " application/json, multipart/mixed",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": " gzip, deflate, br",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Language",
+						"value": " en-US,en;q=0.9,he-IL;q=0.8,he;q=0.7",
+						"type": "text"
+					},
+					{
+						"key": "Connection",
+						"value": " keep-alive",
+						"type": "text"
+					},
+					{
+						"key": "Content-Length",
+						"value": " 253",
+						"type": "text"
+					},
+					{
+						"key": "content-type",
+						"value": " application/json",
+						"type": "text"
+					},
+					{
+						"key": "DNT",
+						"value": " 1",
+						"type": "text"
+					},
+					{
+						"key": "Host",
+						"value": " localhost:3000",
+						"type": "text"
+					},
+					{
+						"key": "Origin",
+						"value": " http://localhost:3000",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": " http://localhost:3000/",
+						"type": "text"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": " \".Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"103\", \"Chromium\";v=\"103\"",
+						"type": "text"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": " ?0",
+						"type": "text"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": " \"Windows\"",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": " empty",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": " cors",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": " same-origin",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": " Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36",
+						"type": "text"
+					},
+					{
+						"key": "x-pf-location",
+						"value": " External",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"query\":\"mutation deleteRecord {\\n  DeleteRecord(input: {ID: \\\"4\\\"}) {\\n   \\tID  }\\n}\",\"variables\":null,\"operationName\":\"deleteRecord\"}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get records",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": " application/json, multipart/mixed",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": " gzip, deflate, br",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Language",
+						"value": " en-US,en;q=0.9,he-IL;q=0.8,he;q=0.7",
+						"type": "text"
+					},
+					{
+						"key": "Connection",
+						"value": " keep-alive",
+						"type": "text"
+					},
+					{
+						"key": "Content-Length",
+						"value": " 253",
+						"type": "text"
+					},
+					{
+						"key": "content-type",
+						"value": " application/json",
+						"type": "text"
+					},
+					{
+						"key": "DNT",
+						"value": " 1",
+						"type": "text"
+					},
+					{
+						"key": "Host",
+						"value": " localhost:3000",
+						"type": "text"
+					},
+					{
+						"key": "Origin",
+						"value": " http://localhost:3000",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": " http://localhost:3000/",
+						"type": "text"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": " \".Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"103\", \"Chromium\";v=\"103\"",
+						"type": "text"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": " ?0",
+						"type": "text"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": " \"Windows\"",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": " empty",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": " cors",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": " same-origin",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": " Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36",
+						"type": "text"
+					},
+					{
+						"key": "x-pf-location",
+						"value": " External",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"query\":\"mutation deleteRecord {\\n  DeleteRecord(input: {ID: \\\"4\\\"}) {\\n   \\tID  }\\n}\",\"variables\":null,\"operationName\":\"deleteRecord\"}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get records",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": " application/json, multipart/mixed",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": " gzip, deflate, br",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": " en-US,en;q=0.9,he-IL;q=0.8,he;q=0.7",
+								"type": "text"
+							},
+							{
+								"key": "Connection",
+								"value": " keep-alive",
+								"type": "text"
+							},
+							{
+								"key": "Content-Length",
+								"value": " 123",
+								"type": "text"
+							},
+							{
+								"key": "content-type",
+								"value": " application/json",
+								"type": "text"
+							},
+							{
+								"key": "DNT",
+								"value": " 1",
+								"type": "text"
+							},
+							{
+								"key": "Host",
+								"value": " localhost:3000",
+								"type": "text"
+							},
+							{
+								"key": "Origin",
+								"value": " http://localhost:3000",
+								"type": "text"
+							},
+							{
+								"key": "Referer",
+								"value": " http://localhost:3000/",
+								"type": "text"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": " \".Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"103\", \"Chromium\";v=\"103\"",
+								"type": "text"
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": " ?0",
+								"type": "text"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": " \"Windows\"",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": " empty",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": " cors",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": " same-origin",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": " Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36",
+								"type": "text"
+							},
+							{
+								"key": "x-pf-location",
+								"value": " External",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"query {\\n  Records  {\\n    ID,\\n    title,\\n    Content,\\n    Views,\\n    Timestamp\\n  }   \\n}\",\"variables\":null}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/query",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"query"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Jun 2022 06:22:05 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "634"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"Records\": [\n            {\n                \"ID\": \"1\",\n                \"title\": \"yiu\",\n                \"Content\": \"iuyuiy\",\n                \"Views\": 9,\n                \"Timestamp\": 4\n            },\n            {\n                \"ID\": \"2\",\n                \"title\": \"ert\",\n                \"Content\": \"ert\",\n                \"Views\": 3,\n                \"Timestamp\": 3\n            },\n            {\n                \"ID\": \"3\",\n                \"title\": \"title\",\n                \"Content\": \"Content\",\n                \"Views\": 1,\n                \"Timestamp\": 1\n            },\n            {\n                \"ID\": \"1\",\n                \"title\": \"yiu\",\n                \"Content\": \"iuyuiy\",\n                \"Views\": 9,\n                \"Timestamp\": 4\n            },\n            {\n                \"ID\": \"2\",\n                \"title\": \"ert\",\n                \"Content\": \"ert\",\n                \"Views\": 3,\n                \"Timestamp\": 3\n            },\n            {\n                \"ID\": \"3\",\n                \"title\": \"title\",\n                \"Content\": \"Content\",\n                \"Views\": 1,\n                \"Timestamp\": 1\n            },\n            {\n                \"ID\": \"1\",\n                \"title\": \"yiu\",\n                \"Content\": \"iuyuiy\",\n                \"Views\": 9,\n                \"Timestamp\": 4\n            },\n            {\n                \"ID\": \"2\",\n                \"title\": \"ert\",\n                \"Content\": \"ert\",\n                \"Views\": 3,\n                \"Timestamp\": 3\n            },\n            {\n                \"ID\": \"3\",\n                \"title\": \"title\",\n                \"Content\": \"Content\",\n                \"Views\": 1,\n                \"Timestamp\": 1\n            }\n        ]\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "get record",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": " application/json, multipart/mixed",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": " gzip, deflate, br",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Language",
+						"value": " en-US,en;q=0.9,he-IL;q=0.8,he;q=0.7",
+						"type": "text"
+					},
+					{
+						"key": "Connection",
+						"value": " keep-alive",
+						"type": "text"
+					},
+					{
+						"key": "Content-Length",
+						"value": " 114",
+						"type": "text"
+					},
+					{
+						"key": "content-type",
+						"value": " application/json",
+						"type": "text"
+					},
+					{
+						"key": "DNT",
+						"value": " 1",
+						"type": "text"
+					},
+					{
+						"key": "Host",
+						"value": " localhost:3000",
+						"type": "text"
+					},
+					{
+						"key": "Origin",
+						"value": " http://localhost:3000",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": " http://localhost:3000/",
+						"type": "text"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": " \".Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"103\", \"Chromium\";v=\"103\"",
+						"type": "text"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": " ?0",
+						"type": "text"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": " \"Windows\"",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": " empty",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": " cors",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": " same-origin",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": " Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36",
+						"type": "text"
+					},
+					{
+						"key": "x-pf-location",
+						"value": " External",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"query\":\"query record {\\nRecord(input: { ID: \\\"3\\\" }) {\\nID    \\n}\\n}\",\"variables\":null,\"operationName\":\"record\"}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get record",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": " application/json, multipart/mixed",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": " gzip, deflate, br",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": " en-US,en;q=0.9,he-IL;q=0.8,he;q=0.7",
+								"type": "text"
+							},
+							{
+								"key": "Connection",
+								"value": " keep-alive",
+								"type": "text"
+							},
+							{
+								"key": "Content-Length",
+								"value": " 114",
+								"type": "text"
+							},
+							{
+								"key": "content-type",
+								"value": " application/json",
+								"type": "text"
+							},
+							{
+								"key": "DNT",
+								"value": " 1",
+								"type": "text"
+							},
+							{
+								"key": "Host",
+								"value": " localhost:3000",
+								"type": "text"
+							},
+							{
+								"key": "Origin",
+								"value": " http://localhost:3000",
+								"type": "text"
+							},
+							{
+								"key": "Referer",
+								"value": " http://localhost:3000/",
+								"type": "text"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": " \".Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"103\", \"Chromium\";v=\"103\"",
+								"type": "text"
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": " ?0",
+								"type": "text"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": " \"Windows\"",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": " empty",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": " cors",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": " same-origin",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": " Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36",
+								"type": "text"
+							},
+							{
+								"key": "x-pf-location",
+								"value": " External",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"query record {\\nRecord(input: { ID: \\\"3\\\" }) {\\nID    \\n}\\n}\",\"variables\":null,\"operationName\":\"record\"}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/query",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"query"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Jun 2022 08:21:50 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "30"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"Record\": {\n            \"ID\": \"3\"\n        }\n    }\n}"
+				}
+			]
 		}
 	]
 }
