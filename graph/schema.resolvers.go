@@ -36,13 +36,28 @@ func (r *mutationResolver) CreateRecord(ctx context.Context, input model.NewReco
 func (r *mutationResolver) DeleteRecord(ctx context.Context, input model.DeleteRecord) (*model.DeletedRecord, error) {
 	db.DeleteRecord(input.ID)
 	deletedrecord := &model.DeletedRecord{
-	ID : input.ID,
-}
+		ID: input.ID,
+	}
 	return deletedrecord, nil
 }
 
 func (r *queryResolver) Records(ctx context.Context) ([]*model.Record, error) {
-	return nil, nil
+	//r.records = r.records[:0] // clear the array
+	var tarRecords []*model.Record
+
+	records := db.GetRecords() // Get all raws from table
+	for _, origRecord := range records {
+		//var destRecord model.Record
+		destRecord := model.Record{ // convert all structures to
+			ID:        origRecord.ID,
+			Title:     origRecord.Title,
+			Content:   origRecord.Content,
+			Views:     origRecord.Views,
+			Timestamp: origRecord.Timestamp,
+		}
+		tarRecords = append(tarRecords, &destRecord)
+	}
+	return tarRecords, nil
 }
 
 // Mutation returns generated.MutationResolver implementation.

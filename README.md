@@ -58,3 +58,13 @@ DeleteRecord(input: { ID: "4" }) {
 ID    
 }
 }
+
+query {
+Records  {
+ID,
+ title,
+Content,
+Views,
+Timestamp
+}   
+}
