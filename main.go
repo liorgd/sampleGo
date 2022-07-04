@@ -1,6 +1,6 @@
 
 package main
-/*
+
 import (
 	"github.com/gin-gonic/gin"
 	_ "github.com/lib/pq"
@@ -17,7 +17,6 @@ func main() {
 	router.POST("/records", rest.PostRecord)
 	router.DELETE("/records/:id", rest.DeleteRecord)
 
-	router.Run("localhost:3000")
+	router.Run("localhost:8080")
 }
 
-*/

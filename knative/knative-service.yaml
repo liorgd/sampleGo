@@ -1,0 +1,34 @@
+apiVersion: serving.knative.dev/v1 
+kind: Service
+metadata:
+  name: serving-app 
+  namespace: default 
+  annotations:
+    enable-scale-to-zero: "true"
+    scale-to-zero-grace-period: "15"
+    scale-to-zero-pod-retention-period: "0s"
+    container-concurrency-target-default: "100"
+    container-concurrency-target-percentage: "0.7"
+    max-scale-up-rate: "3"
+    max-scale-down-rate: "3"
+    panic-window-percentage: "10"
+    panic-threshold-percentage: "200"
+    stable-window: "15"
+    target-burst-capacity: "200"
+    requests-per-second-target-default: "200"
+spec:
+  template:
+    spec:
+      containers:
+        - image: bsucaciu/knative-serving:v2
+          env:
+            - name: MESSAGE
+              value: Hello
+  traffic:
+    - revisionName: serving-app-00001
+      percent: 50
+    - revisionName: serving-app-00002
+      percent: 50
+    - revisionName: serving-app-00003
+      percent: 0
+      tag: test
